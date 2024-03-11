@@ -1,12 +1,19 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View } from "react-native";
-import { ImageViewer, Button, IconButton, CircleButton } from "./components";
+import {
+  ImageViewer,
+  Button,
+  IconButton,
+  CircleButton,
+  EmojiPicker,
+} from "./components";
 import * as ImagePicker from "expo-image-picker";
 import { useState } from "react";
 
 export default function App() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [showAppOptions, setShowAppOptions] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -26,11 +33,13 @@ export default function App() {
   };
 
   const onAddSticker = () => {
-    // we will implement this later
+    setIsModalVisible(true);
   };
 
-  const onSaveImageAsync = async () => {
-    // we will implement this later
+  const onSaveImageAsync = async () => {};
+
+  const onModalClose = async () => {
+    setIsModalVisible(false);
   };
 
   return (
@@ -38,6 +47,7 @@ export default function App() {
       <View style={styles.imageContainer}>
         <ImageViewer selectedImage={selectedImage} />
       </View>
+      <EmojiPicker isVisible={isModalVisible} onClose={onModalClose} />
       {showAppOptions ? (
         <View style={styles.optionsContainer}>
           <View style={styles.optionsRow}>
