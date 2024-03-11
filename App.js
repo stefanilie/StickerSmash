@@ -6,6 +6,7 @@ import {
   IconButton,
   CircleButton,
   EmojiPicker,
+  EmojiList,
 } from "./components";
 import * as ImagePicker from "expo-image-picker";
 import { useState } from "react";
@@ -14,6 +15,7 @@ export default function App() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [showAppOptions, setShowAppOptions] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [pickedEmoji, setPickedEmoji] = useState(null);
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -47,7 +49,9 @@ export default function App() {
       <View style={styles.imageContainer}>
         <ImageViewer selectedImage={selectedImage} />
       </View>
-      <EmojiPicker isVisible={isModalVisible} onClose={onModalClose} />
+      <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
+        <EmojiList onSelect={setPickedEmoji} onCloseModal={onModalClose} />
+      </EmojiPicker>
       {showAppOptions ? (
         <View style={styles.optionsContainer}>
           <View style={styles.optionsRow}>
