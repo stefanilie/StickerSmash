@@ -41,12 +41,22 @@ export default function App() {
       {showAppOptions ? (
         <View style={styles.optionsContainer}>
           <View style={styles.optionsRow}>
-            <IconButton icon="refresh" label="Reset" onPress={onReset} />
+            <IconButton
+              icon="refresh"
+              label="Reset"
+              onPress={onReset}
+              size={24}
+              color="#fff"
+              containerSyle={styles.iconButton}
+            />
             <CircleButton onPress={onAddSticker} />
             <IconButton
               icon="save-alt"
               label="Save"
               onPress={onSaveImageAsync}
+              size={24}
+              color="#fff"
+              containerSyle={styles.iconButton}
             />
           </View>
         </View>
@@ -91,5 +101,9 @@ const styles = StyleSheet.create({
   optionsRow: {
     alignItems: "center",
     flexDirection: "row",
+  },
+  iconButton: {
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
