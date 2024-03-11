@@ -7,6 +7,7 @@ import {
   CircleButton,
   EmojiPicker,
   EmojiList,
+  EmojiSticker,
 } from "./components";
 import * as ImagePicker from "expo-image-picker";
 import { useState } from "react";
@@ -48,6 +49,9 @@ export default function App() {
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <ImageViewer selectedImage={selectedImage} />
+        {pickedEmoji ? (
+          <EmojiSticker imageSize={40} stickerSource={pickedEmoji} />
+        ) : null}
       </View>
       <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
         <EmojiList onSelect={setPickedEmoji} onCloseModal={onModalClose} />
