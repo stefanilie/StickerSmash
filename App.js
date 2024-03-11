@@ -6,6 +6,7 @@ import { useState } from "react";
 
 export default function App() {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [showAppOptions, setShowAppOptions] = useState(false);
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -16,6 +17,7 @@ export default function App() {
       alert("You did not select any image");
     } else if (result.assets) {
       setSelectedImage(result.assets[0]);
+      setShowAppOptions(true);
     }
   };
   return (
@@ -23,10 +25,17 @@ export default function App() {
       <View style={styles.imageContainer}>
         <ImageViewer selectedImage={selectedImage} />
       </View>
-      <View style={styles.footerContainer}>
-        <Button theme="primary" label="Choose a photo" onPress={pickImage} />
-        <Button label="Use this photo" />
-      </View>
+      {showAppOptions ? (
+        <View />
+      ) : (
+        <View style={styles.footerContainer}>
+          <Button theme="primary" label="Choose a photo" onPress={pickImage} />
+          <Button
+            label="Use this photo"
+            onPress={() => setShowAppOptions(true)}
+          />
+        </View>
+      )}
       <StatusBar style="auto" />
     </View>
   );
