@@ -11,6 +11,7 @@ import {
 } from "./components";
 import * as ImagePicker from "expo-image-picker";
 import { useState } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function App() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -46,7 +47,7 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
+    <GestureHandlerRootView style={styles.container}>
       <View style={styles.imageContainer}>
         <ImageViewer selectedImage={selectedImage} />
         {pickedEmoji ? (
@@ -88,7 +89,7 @@ export default function App() {
         </View>
       )}
       <StatusBar style="auto" />
-    </View>
+    </GestureHandlerRootView>
   );
 }
 
